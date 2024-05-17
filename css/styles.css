@@ -48,8 +48,23 @@ button:hover {
     text-align: center;
 }
 
+.header-top h1 {
+    font-size: 4rem;
+}
+
+.contenedor-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+    padding: 1rem;
+    vertical-align: middle;
+}
+
 .header-top > .header_navbar ul {
     font-size: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .header-top li {
@@ -63,9 +78,17 @@ button:hover {
 .menu-box {
     background-color: inherit;
     border: none;
-    width: 60%;
-    padding: 1rem;
-    margin: 1rem;
+    display: block;
+    margin-top: 1rem;
+}
+
+.header_navbar {
+    display: none;
+}
+
+/*Menu responsive*/
+.show {
+    display: block;
 }
 
 /* Main presentacion */
