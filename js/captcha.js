@@ -14,16 +14,27 @@ function enviar(e) {
 }   
 
 function validarCaptcha(captchaAleatorio) {
-    const valorUsuario = document.querySelector("#captcha").value;
+    const valorUsuario = document.querySelector("#captcha");
+    const resultado = document.querySelector("#resultadoCaptcha");
+    resultado.classList.add("show");
 
-    if (valorUsuario == captchaAleatorio) {
-        alert("valido");
-        console.log("valido");
-    }
+    let valor = valorUsuario.value;
 
-    else {
-        alert("invalido");
-        console.log("invalido");
+    if (valor == captchaAleatorio) {
+        valorUsuario.classList.remove("incorrecto");
+        valorUsuario.classList.add("correcto");
+
+        resultado.innerHTML = "Captha valido"
+        resultado.classList.remove("incorrecto");
+        resultado.classList.add("correcto");
+
+    } else {
+        valorUsuario.classList.remove("correcto");
+        valorUsuario.classList.add("incorrecto");
+
+        resultado.innerHTML = "Captcha invalido"
+        resultado.classList.remove("correcto");
+        resultado.classList.add("incorrecto");
     }
 }
 

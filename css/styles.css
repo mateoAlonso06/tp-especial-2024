@@ -24,7 +24,7 @@ body {
     font-size: 1.6rem;
     /* line-height: 2; */
     font-family: var(--fuente-principal);
-    background: linear-gradient(to bottom, var(--color-primario) 70%, brown 30%);
+    background: var(--color-primario);
     color: black;
 }
 
@@ -49,12 +49,18 @@ button:hover {
 /* Barra de navegacion superior */
 .header-top {
     width: 100%;
-    padding: 1rem;
-    text-align: center;
+    height: 8rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 2rem;
+    background-color: lightskyblue;
+    z-index: 1000;
 }
 
 .header-top h1 {
-    font-size: 5rem;
+    font-size: 4rem;
     color: brown;
 }
 
@@ -72,16 +78,19 @@ button:hover {
 }
 
 .header-top > .header_navbar ul {
+    width: 100%;
     font-size: 2rem;
     display: flex;
     flex-direction: column;
     color: brown;
-    font-size: 2.5rem;
     align-items: center;
+    background-color: brown;
+    color: white;
 }
 
 .header-top li {
-    margin: 0.2rem 0;
+    margin: 0.3rem 0;
+    padding: 0.3rem;
 }
 
 .header-top > .header_navbar a:hover {
@@ -100,10 +109,6 @@ button:hover {
 }
 
 /*Menu responsive*/
-.show {
-    display: block;
-}
-
 @media only screen and (min-width: 1024px)  {
     .header-top {
         display: flex;
@@ -123,6 +128,7 @@ button:hover {
         margin-top: 2.5rem;
         flex-direction: row;
         gap: 2rem;
+        background-color: inherit;
     }
 }
 
@@ -149,7 +155,7 @@ button:hover {
 
 .contenedor-img img {
     margin-top: -40rem;
-    margin-left: 6rem;
+    margin-left: 4rem;
     width: 35rem;
     z-index: 0;
 }
@@ -165,9 +171,25 @@ button:hover {
     font-weight: bold;
 }
 
-@media only screen and (min-width: 1024px)  {
+@media only screen and (min-width: 500px) {
     .presentacion {
         flex-direction: row;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    .contenedor-img img {
+        margin: 0;
+        margin-top: 4rem;
+        margin-left: -8rem;
+        width: 35rem;
+        z-index: 0;
+    }
+}
+
+
+@media only screen and (min-width: 1024px)  {
+    .presentacion {
         margin: 0 auto;
     }
 
@@ -286,13 +308,38 @@ button:hover {
     color: white;
 }
 
+.correcto {
+    background-color: rgb(0, 255, 0);
+    color: white;
+}
+
+.incorrecto {
+    background-color: red;
+    color: white;
+}
+
+.resultadoCaptcha {
+    width: 50%;
+    margin: 2rem auto;
+    font-weight: bold;
+    padding: 1rem;
+    text-align: center;
+    border: 2px solid white;
+    display: none;
+}
+
 #btnEnviar {
     display: block;
     width: 90%;
+    height: 5rem;
     margin: 1rem auto;
     padding: 1rem;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: brown;
+    border: none;
+    color: white;
 }
 
 #mostrarCaptcha {
@@ -307,10 +354,55 @@ button:hover {
 
 /* Fin de carrito */
 
+/*FAQ*/
+.main-faq {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.main-faq h2 {
+    font-family: var(--fuente-secundaria);
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1.5rem 0 1rem;
+}
+
+.preguntas-frecuentes {
+    padding: 1rem;
+}
+
+.main-faq .preguntas-frecuentes li {
+    /* list-style-image: url(./img/icons8-perro-48.png); */
+    align-items: center;
+    vertical-align: end;
+    margin: 1rem 0;
+}
+
+.main-faq .preguntas-frecuentes .tipo-alimento {
+    color: brown;
+    padding: 0.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    align-self: baseline;
+}
+
+.nutrientes {
+    color: brown;
+    font-weight: bold;
+}
+
+/*Fin Faq*/
+
 /* Footer */
 footer {
     background-color: white;
     width: 100%;
+    position: static;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 10rem;
 }
 
 .social-media {
@@ -352,4 +444,8 @@ footer .info {
     footer {
         margin-top: 5rem;
     }
+}
+
+.show {
+    display: block;
 }
