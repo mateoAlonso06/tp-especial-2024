@@ -24,7 +24,7 @@ function validarCaptcha(captchaAleatorio) {
         valorUsuario.classList.remove("incorrecto");
         valorUsuario.classList.add("correcto");
 
-        resultado.innerHTML = "Captha valido"
+        resultado.innerHTML = "Captcha valido"
         resultado.classList.remove("incorrecto");
         resultado.classList.add("correcto");
 
