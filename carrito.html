@@ -37,21 +37,27 @@
             </ul>
         </nav>
     </header>
-
-    <main class="wave">
-        <div class="compra">
-            
-        </div>
+    <main>
         <div class="contenedor-formulario">
             <form action="" id="formulario">
+                <label for="alimentos">Alimentos <span class="requerido">*</span></label>
+                <select class="opciones-alimentos" name="alimentos" id="alimentos">
+                    <option value="bolsa1kg">Bolsa 1kg</option>
+                    <option value="bolsa2kg">Bolsa 2kg</option>
+                    <option value="bolsa3kg">Bolsa 3kg</option>
+                    <option value="bolsa4kg">Bolsa 4kg</option>
+                    <option value="bolsa5kg">Bolsa 5kg</option>
+                </select>
+                <label for="cantidad">Cantidad <span class="requerido">*</span></label>
+                <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad" required />
                 <label for="nombre">Nombre completo <span class="requerido">*</span></label>
                 <input type="text" id="nombre" name="nombre" placeholder="Nombre y apellido" required/>
-                <label for="direcccion">Direccion <span class="requerido">*</span></label>
-                <input type="text" id="direccion" name="direccion" placeholder="Direccion" required/>
+                <!-- <label for="direcccion">Direccion <span class="requerido">*</span></label>
+                <input type="text" id="direccion" name="direccion" placeholder="Direccion" required/> -->
                 <label for="correo">Correo electronico <span class="requerido">*</span></label>
                 <input type="email" id="correo" name="correo" placeholder="Correo electronico" required/>
-                <label for="telefono">Telefono <span class="requerido">*</span></label>
-                <input type="tel" id="telefono" name="telefono" placeholder="Telefono" required/>
+                <!-- <label for="telefono">Telefono <span class="requerido">*</span></label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Telefono" required/> -->
 
                 <div class="captcha">
                     <label id="mostrarCaptcha" for="captcha"><span class="requerido">*</span></label>
@@ -60,8 +66,14 @@
                 <p id="resultadoCaptcha" class="resultadoCaptcha">
                     
                 </p>
+                <button id="comprobarCaptcha">Verificar Captcha</button>
                 <button class="btnEnviar" id="btnEnviar" type="submit">Enviar pedido</button>
             </form>
+        </div>
+        <div class="tabla-container">
+            <table id="tabla-alimentos">
+
+            </table>
         </div>
     </main> <!-- fin del main -->
     
