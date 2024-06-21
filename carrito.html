@@ -31,33 +31,29 @@
         </div>
         <nav class="header_navbar">
             <ul>
-                <li><a href="./index.html">Inicio</a></li>
-                <li><a href="./carrito.html">Carrito de compra</a></li>
-                <li><a href="./faq.html">FAQ</a></li>
+                <li><a class="nav-link" href="./index.html">Inicio</a></li>
+                <li><a class="nav-link" href="./carrito.html">Carrito de compra</a></li>
+                <li><a class="nav-link" href="./faq.html">FAQ</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <div class="contenedor-formulario">
+        <div id="form-container" class="contenedor-formulario">
             <form action="" id="formulario">
                 <label for="alimentos">Alimentos <span class="requerido">*</span></label>
                 <select class="opciones-alimentos" name="alimentos" id="alimentos">
-                    <option value="bolsa1kg">Bolsa 1kg</option>
-                    <option value="bolsa2kg">Bolsa 2kg</option>
-                    <option value="bolsa3kg">Bolsa 3kg</option>
-                    <option value="bolsa4kg">Bolsa 4kg</option>
-                    <option value="bolsa5kg">Bolsa 5kg</option>
+                    <option value="bolsa 1kg">Bolsa 1kg</option>
+                    <option value="bolsa 2kg">Bolsa 2kg</option>
+                    <option value="bolsa 3kg">Bolsa 3kg</option>
+                    <option value="bolsa 4kg">Bolsa 4kg</option>
+                    <option value="bolsa 5kg">Bolsa 5kg</option>
                 </select>
                 <label for="cantidad">Cantidad <span class="requerido">*</span></label>
                 <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad" required />
                 <label for="nombre">Nombre completo <span class="requerido">*</span></label>
                 <input type="text" id="nombre" name="nombre" placeholder="Nombre y apellido" required/>
-                <!-- <label for="direcccion">Direccion <span class="requerido">*</span></label>
-                <input type="text" id="direccion" name="direccion" placeholder="Direccion" required/> -->
                 <label for="correo">Correo electronico <span class="requerido">*</span></label>
                 <input type="email" id="correo" name="correo" placeholder="Correo electronico" required/>
-                <!-- <label for="telefono">Telefono <span class="requerido">*</span></label>
-                <input type="tel" id="telefono" name="telefono" placeholder="Telefono" required/> -->
 
                 <div class="captcha">
                     <label id="mostrarCaptcha" for="captcha"><span class="requerido">*</span></label>
@@ -66,17 +62,26 @@
                 <p id="resultadoCaptcha" class="resultadoCaptcha">
                     
                 </p>
-                <button id="comprobarCaptcha">Verificar Captcha</button>
-                <button class="btnEnviar" id="btnEnviar" type="submit">Enviar pedido</button>
+                <button class="btnCaptcha" id="comprobarCaptcha">Verificar Captcha</button>
+                <div class="botonera-container">
+                    <button class="btnSubmit" id="btnEnviar" type="submit">Enviar</button>
+                    <button class="btnSubmit" id="btnEnviarx3" type="submit">Enviar x3</button>
+                    <button class="btnSubmit" id="btnModificar" type="submit">Modificar</button>
+                </div>
             </form>
         </div>
-        <div class="tabla-container">
-            <table id="tabla-alimentos">
-
-            </table>
+        <div class="contenedor-pedidos">
+            <div class="filtro-container">
+                <input type="text" id="filtro" name="filtro" placeholder="Buscar por cliente">
+                <button id="btnBuscar">Buscar</button>
+            </div>
+            <div class="tabla-container">
+                <table id="tabla-alimentos">
+    
+                </table>
+            </div>
         </div>
     </main> <!-- fin del main -->
-    
     <footer>
         <div class="social-container">
             <ul class="social-media">
@@ -119,14 +124,18 @@
             </ul>
         </div>
         <div class="ofertas-container">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-circle" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffbf00" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
-                <path d="M12 8v4" />
-                <path d="M12 16h.01" />
-            </svg>
-            <p class="footer-info">Para recibir ofertas y descuentos exclusivos sobre nuestros productos ingrese su dirección de correo electronico y reciba en su bandeja de entrada todos los detalles!</p>
-            <!-- <input class="input-ofertas" type="email" id="email-ofertas" name="email-ofertas" placeholder="dirección de correo" /> -->
+            <div class="primer-separacion">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-circle" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffbf00" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                    <path d="M12 8v4" />
+                    <path d="M12 16h.01" />
+                </svg>
+                <p class="footer-info">Para recibir ofertas y descuentos exclusivos sobre nuestros productos ingrese su dirección de correo electronico y reciba en su bandeja de entrada todos los detalles!</p>
+            </div>
+            <div class="segunda-separacion">
+                <input class="input-ofertas" type="email" id="email-ofertas" name="email-ofertas" placeholder="dirección de correo" />
+            </div>
         </div>
         <div class="info">
             <p>
@@ -134,7 +143,7 @@
             </p>
         </div>
     </footer>
+    <script type="text/javascript" src="./js/carrito.js"></script>
     <script type="text/javascript" src="./js/navbar.js"></script>
-    <script type="text/javascript" src="./js/captcha.js"></script>
 </body>
 </html>

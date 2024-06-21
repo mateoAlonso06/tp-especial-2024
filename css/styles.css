@@ -22,7 +22,6 @@ html {
 
 body {
     font-size: 1.6rem;
-    /* line-height: 2; */
     font-family: var(--fuente-principal);
     background: var(--color-primario);
     color: black;
@@ -108,30 +107,6 @@ button:hover {
     display: none;
 }
 
-/*Menu responsive*/
-@media only screen and (min-width: 1024px)  {
-    .header-top {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-    }
-
-    .menu-box {
-        display: none;
-    }
-
-    .header_navbar {
-        display: block;
-    }
-
-    .header-top .header_navbar > ul {
-        margin-top: 2.5rem;
-        flex-direction: row;
-        gap: 2rem;
-        background-color: inherit;
-    }
-}
-
 /* Main presentacion */
 .presentacion {
     width: 90%;
@@ -156,7 +131,7 @@ button:hover {
 .contenedor-img img {
     margin-top: -40rem;
     margin-left: 3rem;
-    width: 35rem;
+    width: 30rem;
     z-index: 0;
 }
 
@@ -189,6 +164,27 @@ button:hover {
 
 
 @media only screen and (min-width: 1024px)  {
+    .header-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .menu-box {
+        display: none;
+    }
+
+    .header_navbar {
+        display: block;
+    }
+
+    .header-top .header_navbar > ul {
+        margin-top: 2.5rem;
+        flex-direction: row;
+        gap: 2rem;
+        background-color: inherit;
+    }
+
     .presentacion {
         margin: 0 auto;
     }
@@ -285,6 +281,16 @@ button:hover {
     color: brown;
 }
 
+.opciones-alimentos {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    padding: 1.3rem;
+    outline: none;
+    font-size: 16px;
+    border: none;
+}
+
 /*Captcha*/
 .captcha {
     margin: 0 auto;
@@ -328,12 +334,23 @@ button:hover {
     display: none;
 }
 
-#btnEnviar {
+.btnCaptcha {
     display: block;
-    width: 90%;
+    width: 70%;
+    margin: 2.5rem auto;
+    padding: 1.2rem;
+    font-size: 2rem;
+    border: none;
+    background-color: black;
+    color: white;
+}
+
+.btnSubmit {
+    display: block;
+    width: 100%;
     height: 5rem;
     margin: 1rem auto;
-    padding: 1rem;
+    padding: 1.5rem;
     cursor: pointer;
     font-size: 2rem;
     font-weight: bold;
@@ -351,48 +368,116 @@ button:hover {
     font-weight: bold;
 }
 /*Fin de captcha*/
-
-.opciones-alimentos {
-    width: 90%;
-    display: block;
-    margin: 0 auto;
-    padding: 1.3rem;
-    outline: none;
-    font-size: 16px;
+.botonera-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 /*Tabla*/
-#tabla-alimentos {
-    width: 100%;
-    height: 200px;
-    border: 1px solid black;
-    margin: 3rem auto;
+.contenedor-pedidos {
+    width: 95%;
     padding: 1rem;
-    overflow-y: scroll;
-    background-color: white;
-    color: black;
-    border-collapse: collapse;
+    margin: 2rem auto;
+    font-size: 1.8rem;
 }
 
-.btnBorrar {
-    background-color: lightcoral;
+.tabla-container {
+    width: 100%;
+    border-radius: 2rem;
+    background-color: brown;
+    overflow-x: scroll;
+}
+
+#tabla-alimentos {
+    width: 100%;
     padding: 1rem;
     color: white;
-
+    overflow-x: scroll;
+    border-collapse: collapse;
+    border-radius: 2rem;
+    text-align: center;
 }
 
 thead {
+    border-bottom: 1px solid white;
+    font-size: 2rem;
+    color: white;
+}
+
+.btnBorrar,
+.btnEditar {
+    background-color: brown;
+    color: white;
+    width: 100%;
+    padding: 1rem;
+    display: block;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+.btnBorrar:hover,
+.btnEditar:hover {
+    opacity: 0.9;
+}
+
+.btnBorrar {
     background-color: red;
 }
 
-th, tr, td {
-    border: 1px solid black;
+.btnEditar {
+    background-color: yellow;
+    color: black;
+}
+
+th, td {
     padding: 1rem;
     font-weight: normal;
 }
 
-tfoot {
-    background-color: lightblue;
+.filtro-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 95%;
+    margin: 2rem auto;
+}
+
+.filtro-container input {
+    background-color: transparent;
+    padding: 1rem;
+    width: 75%;
+    font-size: 2rem;
+    margin: 1rem 0;
+    color: brown;
+}
+
+.filtro-container button {
+    display: block;
+    width: 35%;
+    margin: auto;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 2rem;
+    border: none;
+    color: brown;
+    border-radius: 1rem;
+}
+
+@media (width >= 1024px) {
+    .contenedor-pedidos,
+    .botonera-container {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .btnCaptcha {
+        width: 20%;
+    }
+    .btnSubmit {
+        width: 30%;
+    }
 }
 /* Fin de carrito */
 
@@ -404,7 +489,16 @@ tfoot {
 
 .main-faq h2 {
     font-family: var(--fuente-secundaria);
-    color: white;
+    color: brown;
+    text-shadow: 
+                -1px -1px 0 white,  
+                 1px -1px 0 white,
+                -1px  1px 0 white,
+                 1px  1px 0 white,
+                -2px -2px 0 white,  
+                 2px -2px 0 white,
+                -2px  2px 0 white,
+                 2px  2px 0 white;
     font-size: 3rem;
     font-weight: bold;
     margin: 1.5rem 0 1rem;
@@ -457,20 +551,29 @@ footer {
 /*ofertas footer*/
 .ofertas-container {
     width: 95%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 15% 85%;
     gap: 0.5rem;
     border: 0.3rem solid gold;
     padding: 1rem;
     font-size: 1.8rem;
     align-items: center;
     border-radius: 0.5rem;
+    margin: 0 auto;
+}
+
+.primer-separacion {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 15% 85%;
 }
 
 .input-ofertas {
-    width: 90%;
-    margin: 0 auto;
+    width: 100%;
+    background-color: brown;
+    margin: 2rem auto;
+    display: block;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
 }
 
 footer .info {
@@ -490,4 +593,10 @@ footer .info {
 
 .show {
     display: block;
+}
+
+.disabled {
+    color: red;
+    background-color: gray;
+    text-decoration: line-through;
 }
