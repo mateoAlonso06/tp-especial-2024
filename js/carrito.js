@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnEnviarModificacion = document.querySelector("#btnModificar");
 
     // resultado de cada peticion
+    const resultadoPeticion = document.querySelector("#resultado-peticion");
 
     btnEnviarModificacion.disabled = true;
     btnEnviarModificacion.classList.add("disabled");
@@ -23,12 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // bandera para el captcha
     let captchaValido = false;
 
+    // id para el put
     let idPut = "";
 
     // listeners
-    formularioPedido.addEventListener("submit", (e) => {
-        e.preventDefault();
-    });
+    formularioPedido.addEventListener("submit", (e) => e.preventDefault());
 
     btnCaptcha.addEventListener("click", validarCaptcha);
     btnEnviar.addEventListener("click", () => enviarPedido(url));
@@ -61,10 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (captchaValido) {
             try {
                 let response = await fetch(url + "/alimentos", options);
-                if (response.ok)
-                    mostrarPedidos(url);
+                if (!response.ok)
+                    throw new Error("El pedido no pudo ser enviado con exito");
+                
+                mostrarPedidos(url);
+                resultadoPeticion.innerHTML = "Pedido ingresado con exito";
             } catch (error) {
-                // manejar error!!!!
+                resultadoPeticion.innerHTML = error;
             }
         }
     }
@@ -74,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let response = await fetch(url + "/alimentos");
             
             if (!response.ok)
-                throw new Error("404 error");
+                throw new Error("Fallo al cargar los pedidos");
 
             let pedidos = await response.json();
 
@@ -96,8 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${pedido.cantidad}</td>
                     <td>${pedido.cliente}</td>
                     <td>
-                    <button class="btnBorrar" data-id="${pedido.id}">Eliminar</button>
-                    <button class="btnEditar" data-id="${pedido.id}">Editar</button>
+                        <button class="btnBorrar" data-id="${pedido.id}">Eliminar</button>
+                        <button class="btnEditar" data-id="${pedido.id}">Editar</button>
                     </td>
                     `;
                 tbody.appendChild(tr);
@@ -120,22 +123,24 @@ document.addEventListener("DOMContentLoaded", () => {
             }))
 
         } catch (error) {
-            // manejar error!!!!
+            resultadoPeticion.innerHTML = error;
         }
     }
 
     async function eliminarUsuario(id) {
-        const option = {
-            "method": "DELETE"
-        }
         try {
-            let response = await fetch(url + `/alimentos/${id}`, option);
+            let response = await fetch(url + `/alimentos/${id}`, {
+                "method": "DELETE"
+            });
+
             if (!response.ok)
                 throw new Error("El pedido no pudo ser eliminado");
+            
+            resultadoPeticion.innerHTML = "El pedido fue eliminado con exito";
             mostrarPedidos(url);
 
         } catch (error) {
-            // manejar error!!!!
+            resultadoPeticion.innerHTML = error;
         }
     }
 
@@ -157,9 +162,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (!response.ok)
-                throw new Error("Error");
+                throw new Error("El pedido no pudo ser modificado");
 
-            alert("Modificacion exitosa");
+            resultadoPeticion.innerHTML = "El pedido ha sido modificado con éxito.";
+            resultadoPeticion.classList.remove("bad-request");
+            resultadoPeticion.classList.add("good-request");
+
             mostrarPedidos(url);
 
             btnEnviar.disabled = false;
@@ -168,8 +176,11 @@ document.addEventListener("DOMContentLoaded", () => {
             btnEnviar.classList.remove("disabled");
             btnEnviarx3.classList.remove("disabled");
 
+            btnEnviarModificacion.classList.add("disabled");
         } catch (error) {
-            // manejar error
+            resultadoPeticion.innerHTML = error;
+            resultadoPeticion.classList.remove("good-request");
+            resultadoPeticion.classList.add("bad-request");
         }
     }
 
@@ -199,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
             formularioPedido.elements["correo"].value = pedido.correo;
             
         } catch (error) {
-            // manejar error
+            console.log(error);
         }
     }
 
@@ -208,23 +219,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const filtroValue = document.querySelector("#filtro").value;
         try {
             let response = await fetch(url + "/alimentos");
-
+    
             if (!response.ok)
                 throw new Error('404 error');
-
+    
             let pedidos = await response.json();
-
+    
             tablaPedidos.innerHTML =
                 `<thead>
-            <tr>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th>Cliente</th>
-            </tr>
-        </thead>`;
-
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Cliente</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>`;
+    
             let tbody = document.createElement("tbody");
-
+    
             pedidos.forEach(pedido => {
                 let nombreCliente = pedido.cliente;
                 if (nombreCliente.toLowerCase().includes(filtroValue.toLowerCase())) {
@@ -233,31 +245,34 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${pedido.producto}</td>
                     <td>${pedido.cantidad}</td>
                     <td>${pedido.cliente}</td>
-                    <button class="btnBorrar" data-id="${pedido.id}">Eliminar</button>
-                    <button class="btnEditar" data-id="${pedido.id}">Modificar</button>
-                    `;
-
+                    <td>
+                        <button class="btnBorrar" data-id="${pedido.id}">Eliminar</button>
+                        <button class="btnEditar" data-id="${pedido.id}">Editar</button>
+                    </td>`;
+    
                     tbody.appendChild(tr);
-
-                    let modificarBtns = document.querySelectorAll(".btnEditar");
-                    let deleteBtns = document.querySelectorAll(".btnBorrar");
-
-                    modificarBtns.forEach(btn >= btn.addEventListener("click", (e) => {
-                        window.location.href = "#form-container";
-                        let id = e.target.getAttribute("data-id");
-                        traerUsuario(id);
-                    }));
-
-                    deleteBtns.forEach(btn => btn.addEventListener("click", (e) => {
-                        let id = e.target.getAttribute("data-id");
-                        eliminarUsuario(id);
-                    }));
                 }
             });
-
+    
             tablaPedidos.appendChild(tbody);
+    
+            // Obtener los botones después de agregar el tbody al DOM
+            let modificarBtns = document.querySelectorAll(".btnEditar");
+            let deleteBtns = document.querySelectorAll(".btnBorrar");
+    
+            modificarBtns.forEach(btn => btn.addEventListener("click", (e) => {
+                window.location.href = "#form-container";
+                let id = e.target.getAttribute("data-id");
+                traerUsuario(id);
+            }));
+    
+            deleteBtns.forEach(btn => btn.addEventListener("click", (e) => {
+                let id = e.target.getAttribute("data-id");
+                eliminarUsuario(id);
+            }));
+    
         } catch (error) {
-            //manejar error!!!
+            console.log(error);
         }
     }
 

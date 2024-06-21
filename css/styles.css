@@ -341,8 +341,9 @@ button:hover {
     padding: 1.2rem;
     font-size: 2rem;
     border: none;
-    background-color: black;
-    color: white;
+    background-color: white;
+    font-weight: bold;
+    color: gray;
 }
 
 .btnSubmit {
@@ -466,6 +467,26 @@ th, td {
     border-radius: 1rem;
 }
 
+.peticion {
+    width: 75%;
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+.good-request, .bad-request {
+    border: 1px solid white;
+    margin: 3rem auto;
+}
+
+.good-request {
+    background-color: lightgreen;
+}
+
+.bad-request {
+    background-color: lightcoral;
+}
+
 @media (width >= 1024px) {
     .contenedor-pedidos,
     .botonera-container {
@@ -550,7 +571,7 @@ footer {
 
 /*ofertas footer*/
 .ofertas-container {
-    width: 95%;
+    width: 85%;
     gap: 0.5rem;
     border: 0.3rem solid gold;
     padding: 1rem;
@@ -561,9 +582,12 @@ footer {
 }
 
 .primer-separacion {
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 15% 85%;
+    width: 100%;
+    text-align: center;
+}
+
+.segunda-separacion {
+    width: 100%;
 }
 
 .input-ofertas {
@@ -587,7 +611,19 @@ footer .info {
 
 @media only screen and (min-width: 1024px) {
     footer {
-        margin-top: 5rem;
+        margin-top: 3.5rem;
+    }
+
+    .primer-separacion {
+        width: 75%;
+        margin: 0 auto;
+        display: flex;
+        padding: 1rem;
+        justify-content: center;
+    }
+
+    .input-ofertas {
+        width: 80%;
     }
 }
 
